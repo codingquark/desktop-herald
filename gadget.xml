@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<gadget>
+  <name>Desktop Herald</name>
+  <version>1.0</version>
+  <description>Live India news</description>
+  <author name="Devji Chhanga">
+	<info text="Desktop Herald Online" url="http://feedrunner.co.cc/"></info>
+	<logo src="images/cnBg.png" />
+  </author>
+  <copyright>Devji Chhanga</copyright>
+  <hosts>
+    <host name="sidebar">
+      <base type="HTML" apiVersion="1.0.0" src="Desktop Herald.html" />
+      <permissions>Full</permissions>
+      <platform minPlatformVersion="1.0" />
+	  <autoscaleDPI>True</autoscaleDPI>
+	  <defaultImage src="images/cnBg.png" />
+    </host>
+  </hosts>
+    <icons>
+        <icon height="20" width="20" src="images/cnBg.png" />
+    </icons>
+</gadget>

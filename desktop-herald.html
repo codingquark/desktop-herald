@@ -1,0 +1,115 @@
+<html>
+	<head>
+		<style type="text/css">
+			html
+			{
+				background-color: #EEEEEE;
+				scrollbar-base-color: #EEEEEE;
+				scrollbar-shadow-color: #CFCFCF;
+				scrollbar-highlight-color: #EEEEEE;
+				scrollbar-face-color: #E7E5E5;
+				scrollbar-3dlight-color: #E7E5E5;
+				scrollbar-darkshadow-color: #EEEEEE;
+				scrollbar-track-color: #EEEEEE;
+				scrollbar-arrow-color: #CFCFCF;
+			}
+			body
+			{
+				margin: 0;
+				width: 200px;
+				height: 216px;
+				font-family: verdana;
+				font-weight: bold;
+				font-size: 9.3px;
+				color: Gray;
+			}
+			clock
+			{
+				margin: 0;
+				font-family: tahoma;           
+				font-size: 8px;
+			}
+			space
+			{
+				font-size: 1px;
+			}
+		</style>
+		<script language="javascript">
+			//Connection Detection Script
+			var SSClientCaps_wait_interval_01 = null;
+			var SSModemFound = null;
+			function SSClientCapsWaitForDOM() {
+				// need to wait for document before looking up clientCaps properties
+				if (document.readyState != "interactive" &&
+				document.readyState != "complete")
+					return;
+				var bodyObjArray = document.getElementsByTagName("body");
+				var bodyObj = bodyObjArray[0];
+				if (!bodyObj)
+					return;
+				clearInterval(SSClientCaps_wait_interval_01);
+				bodyObj.style.behavior = "url(#default#clientCaps)";
+				return bodyObj.connectionType;
+				if (bodyObj.connectionType!="lan" &&
+				bodyObj.connectionType!="offline"){
+					SSModemFound = true;
+				}
+				else
+				{
+					//nothing.
+				}
+			}//end SSClientCapsWaitForDOM()
+			function connectServer()
+			{
+				location.href = location.href;
+			}			
+			function refreshGadget() {
+				if(SSClientCapsWaitForDOM() == "modem") {
+					window.setInterval(connectServer, (10*60*1000));
+				}
+				else {
+					document.getElementById("conn").innerHTML="Oops... I can't connect<br />to my publishers!<br/><br/>Check your connection.";
+					window.setInterval(connectServer, (5*1000));
+				}
+			}
+			window.setInterval(refreshGadget, (5*1000));//Org: 15*60*1000
+		</script>
+	</head>
+	
+	<body background="images/downbg.png">
+		<br /><br /><br/>
+		<!-- ************** Clock ****************-->
+		<center>
+			<div id="clock">
+				<script language="JavaScript">
+					var now = new Date();
+					var days = new Array('Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday');
+					var months = new Array('January','February','March','April','May','June','July','August','September','October','November','December');
+					var date = ((now.getDate()<10) ? "0" : "") + now.getDate();
+					function fourdigits(number)	{
+						return (number < 1000) ? number + 1900 : number;
+					}
+					today =  days[now.getDay()] + ", " + months[now.getMonth()] + " " + date + ", " + (fourdigits(now.getYear()));
+					document.write(today);
+				</script>
+			</div>
+		</center>
+		<!-- ************** Clock ****************-->
+			<div id="space"><br /></div> <!--Spacer-->
+		<!-- ************** News Content ****************-->
+		<center>
+			<div STYLE="height: 136px; width: 195px; font-size: 8px; overflow: auto;">
+			<table border="0">
+			<tr>
+				<td>
+					<script language="javascript" src="http://rssfeedreader.com/rss3/rss.php?url=http%3A%2F%2Ffeedrunner.co.cc%2FDHeraldNewsRss.xml&newpage=&chead=1&atl=&desc=0&owncss=&eleminate=&auth=&dts=&width=172&max=100&tlen=0&rnd=1&bt=0&bs=None&nmb=&ntb=&naf=&nst=&nwd=0&nht=0&dlen=0&lstyle=8&lc=%23000000&bg=%23EEEEEE&bc=%23CFCFCF&spc=&ims=&tc=&ts=8&tfont=Verdana,+Arial,+Sans-serif"></script>
+					<!-- Above code calls a service that converts RSS XML file into formatted HTML, RSS XML file is generated on HelioHost http://feedrunner.co.cc/DHeraldNewsRss.xml -->
+					<!-- The code that actually crawls the news sources and merges them is a PHP file on HelioHost server: special_rssWriter.php, it is executed twice a day using cronjobs ->
+				</td>
+			</tr>
+			</table>
+			</div>
+		</center>
+		<!-- ************** News Content ****************-->
+	</body>
+</html>
