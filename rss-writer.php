@@ -40,7 +40,7 @@
 	$bgcolor = "#".$bgcolor;
 	$font = $_GET['font'];
 
-	require("parser2.php");
+	require("parser.php");
 
 	
 	$source1 = fopen($feed1,"r");
